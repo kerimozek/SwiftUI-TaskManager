@@ -12,6 +12,8 @@
 		6EB48C112961E03E002EC5CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EB48C102961E03E002EC5CF /* Assets.xcassets */; };
 		6EB48C142961E03E002EC5CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EB48C132961E03E002EC5CF /* Preview Assets.xcassets */; };
 		6EB48C1C296324B0002EC5CF /* Task_Manager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48C1A296324B0002EC5CF /* Task_Manager.xcdatamodeld */; };
+		6EB48C20296436CB002EC5CF /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48C1F296436CB002EC5CF /* Home.swift */; };
+		6EB48C2229643E02002EC5CF /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48C2129643E02002EC5CF /* TaskViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		6EB48C102961E03E002EC5CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6EB48C132961E03E002EC5CF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6EB48C1B296324B0002EC5CF /* Task_Manager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Task_Manager.xcdatamodel; sourceTree = "<group>"; };
+		6EB48C1F296436CB002EC5CF /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		6EB48C2129643E02002EC5CF /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			children = (
 				6EB48C0C2961E03A002EC5CF /* SwiftUI_TaskManagerApp.swift */,
 				6EB48C0E2961E03A002EC5CF /* ContentView.swift */,
+				6EB48C2129643E02002EC5CF /* TaskViewModel.swift */,
+				6EB48C1F296436CB002EC5CF /* Home.swift */,
 				6EB48C102961E03E002EC5CF /* Assets.xcassets */,
 				6EB48C122961E03E002EC5CF /* Preview Content */,
 			);
@@ -142,6 +148,8 @@
 			files = (
 				6EB48C0F2961E03A002EC5CF /* ContentView.swift in Sources */,
 				6EB48C0D2961E03A002EC5CF /* SwiftUI_TaskManagerApp.swift in Sources */,
+				6EB48C20296436CB002EC5CF /* Home.swift in Sources */,
+				6EB48C2229643E02002EC5CF /* TaskViewModel.swift in Sources */,
 				6EB48C1C296324B0002EC5CF /* Task_Manager.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
