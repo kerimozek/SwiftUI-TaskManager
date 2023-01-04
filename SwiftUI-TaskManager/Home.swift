@@ -23,8 +23,27 @@ struct Home: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.vertical)
                 CustomSegmentedBar()
+                    .padding(.top,5)
             }
             .padding()
+        }
+        .overlay(alignment: .bottom) {
+            Button {
+                
+            } label: {
+                Label {
+                    Text("Add Text")
+                        .font(.callout)
+                        .fontWeight(.semibold)
+                } icon: {
+                    Image(systemName: "plus.app.fill")
+                }
+                .foregroundColor(.white)
+                .padding(.vertical,12)
+                .padding(.horizontal)
+                .background(.black, in: Capsule())
+            }
+            
         }
     }
     // MARK: Custom Segmented Bar
