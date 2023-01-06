@@ -7,10 +7,15 @@
 
 import SwiftUI
 
+
 struct Home: View {
     @StateObject var taskModel: TaskViewModel = .init()
     // MARK: Matched Geometry NameSpace
     @Namespace var animation
+    
+    // MARK: Fetching Task
+    @FetchRequest(entity: Task.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Task.deadline, ascending: false)], predicate: nil, animation: .easeInOut) var tasks: FetchedResults<Task>
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
@@ -29,7 +34,7 @@ struct Home: View {
         }
         .overlay(alignment: .bottom) {
             Button {
-                
+                taskModel.openEditTask.toggle()
             } label: {
                 Label {
                     Text("Add Text")
@@ -54,9 +59,65 @@ struct Home: View {
                 ], startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             }
-            
+        }
+        .fullScreenCover(isPresented: $taskModel.openEditTask) {
+            taskModel.resetTaskData()
+        } content: {
+            AddNewTask()
+                .environmentObject(taskModel)
         }
     }
+    
+    // MARK: TaskView
+    @ViewBuilder
+    func TaskView()->some View{
+        LazyVStack(spacing: 20) {
+            ForEach(tasks){task in
+                
+            }
+        }
+        .padding(.top,20)
+    }
+    
+    // MARK: Task Row View
+    @ViewBuilder
+    func TaskRowView(task: Task)->some View {
+        VStack(alignment: .leading, spacing: 10){
+            HStack{
+                Text(task.type ?? "")
+                    .font(.callout)
+                    .padding(.vertical,5)
+                    .padding(.horizontal)
+                    .background{
+                        Capsule()
+                            .fill(.white.opacity(0.3))
+                    }
+                
+                Spacer()
+                
+                // MARK: Edit Button Only For Non Completed Tasks
+                if !task.isCompleted{
+                    Button{
+                        
+                    } label: {
+                        Image(systemName: "square.and.pencil")
+                            .foregroundColor(.black)
+                    }
+                }
+            }
+            
+            
+        }
+        .padding()
+        frame(maxWidth: .infinity)
+            .background{
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .fill(Color(task.color ?? "Yellow"))
+            }
+    }
+    
+    
+    
     // MARK: Custom Segmented Bar
     @ViewBuilder
     func CustomSegmentedBar()->some View {
