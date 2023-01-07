@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6EB042592969D19600E9CEED /* DynamicFilteredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB042582969D19600E9CEED /* DynamicFilteredView.swift */; };
 		6EB48C0D2961E03A002EC5CF /* SwiftUI_TaskManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48C0C2961E03A002EC5CF /* SwiftUI_TaskManagerApp.swift */; };
 		6EB48C0F2961E03A002EC5CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB48C0E2961E03A002EC5CF /* ContentView.swift */; };
 		6EB48C112961E03E002EC5CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EB48C102961E03E002EC5CF /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6EB042582969D19600E9CEED /* DynamicFilteredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFilteredView.swift; sourceTree = "<group>"; };
 		6EB48C092961E03A002EC5CF /* SwiftUI-TaskManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-TaskManager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EB48C0C2961E03A002EC5CF /* SwiftUI_TaskManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_TaskManagerApp.swift; sourceTree = "<group>"; };
 		6EB48C0E2961E03A002EC5CF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,9 +51,6 @@
 		6EB48C002961E03A002EC5CF = {
 			isa = PBXGroup;
 			children = (
-				6EB48C2E29682F35002EC5CF /* Task+CoreDataClass.swift */,
-				6EB48C2F29682F35002EC5CF /* Task+CoreDataProperties.swift */,
-				6EB48C2729682D4E002EC5CF /* Task_Manager.xcdatamodeld */,
 				6EB48C0B2961E03A002EC5CF /* SwiftUI-TaskManager */,
 				6EB48C0A2961E03A002EC5CF /* Products */,
 			);
@@ -69,8 +68,12 @@
 			isa = PBXGroup;
 			children = (
 				6EB48C122961E03E002EC5CF /* Preview Content */,
+				6EB48C2E29682F35002EC5CF /* Task+CoreDataClass.swift */,
+				6EB48C2F29682F35002EC5CF /* Task+CoreDataProperties.swift */,
+				6EB48C2729682D4E002EC5CF /* Task_Manager.xcdatamodeld */,
 				6EB48C322968329E002EC5CF /* Persistence.swift */,
 				6EB48C0C2961E03A002EC5CF /* SwiftUI_TaskManagerApp.swift */,
+				6EB042582969D19600E9CEED /* DynamicFilteredView.swift */,
 				6EB48C0E2961E03A002EC5CF /* ContentView.swift */,
 				6EB48C2129643E02002EC5CF /* TaskViewModel.swift */,
 				6EB48C232966E08E002EC5CF /* AddNewTask.swift */,
@@ -163,6 +166,7 @@
 				6EB48C3029682F35002EC5CF /* Task+CoreDataClass.swift in Sources */,
 				6EB48C2929682D4E002EC5CF /* Task_Manager.xcdatamodeld in Sources */,
 				6EB48C20296436CB002EC5CF /* Home.swift in Sources */,
+				6EB042592969D19600E9CEED /* DynamicFilteredView.swift in Sources */,
 				6EB48C332968329E002EC5CF /* Persistence.swift in Sources */,
 				6EB48C2229643E02002EC5CF /* TaskViewModel.swift in Sources */,
 				6EB48C3129682F35002EC5CF /* Task+CoreDataProperties.swift in Sources */,
