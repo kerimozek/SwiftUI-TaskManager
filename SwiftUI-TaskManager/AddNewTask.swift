@@ -7,40 +7,55 @@
 
 import SwiftUI
 
-
 struct AddNewTask: View {
     @EnvironmentObject var taskModel: TaskViewModel
+    // MARK: All Environment Values in one Variable
     @Environment(\.self) var env
     @Namespace var animation
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 12){
             Text("Edit Task")
                 .font(.title3.bold())
                 .frame(maxWidth: .infinity)
                 .overlay(alignment: .leading) {
-                    Button{
+                    Button {
                         env.dismiss()
                     } label: {
                         Image(systemName: "arrow.left")
                             .font(.title3)
                             .foregroundColor(.black)
-                        
                     }
                 }
+                .overlay(alignment: .trailing) {
+                    Button {
+                        if let editTast = taskModel.editTask{
+                            env.managedObjectContext.delete(editTast)
+                            try? env.managedObjectContext.save()
+                            env.dismiss()
+                        }
+                    } label: {
+                        Image(systemName: "trash")
+                            .font(.title3)
+                            .foregroundColor(.red)
+                    }
+                    .opacity(taskModel.editTask == nil ? 0 : 1)
+                }
+            
             VStack(alignment: .leading, spacing: 12) {
-                Text("Text Color")
+                Text("Task Color")
                     .font(.caption)
                     .foregroundColor(.gray)
                 
-                let colors: [String] =
-                ["Yellow","Green","Blue","Purple","Red","Orange"]
-                HStack(spacing: 15) {
-                    ForEach(colors,id: \.self) {color in
+                // MARK: Sample Card Colors
+                let colors: [String] = ["Yellow","Green","Blue","Purple","Red","Orange"]
+                
+                HStack(spacing: 15){
+                    ForEach(colors,id: \.self){color in
                         Circle()
                             .fill(Color(color))
                             .frame(width: 25, height: 25)
-                            .background {
-                                if taskModel.taskColor == color {
+                            .background{
+                                if taskModel.taskColor == color{
                                     Circle()
                                         .strokeBorder(.gray)
                                         .padding(-3)
@@ -54,7 +69,7 @@ struct AddNewTask: View {
                 }
                 .padding(.top,10)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity,alignment: .leading)
             .padding(.top,30)
             
             Divider()
@@ -64,12 +79,13 @@ struct AddNewTask: View {
                 Text("Task Deadline")
                     .font(.caption)
                     .foregroundColor(.gray)
+                
                 Text(taskModel.taskDeadline.formatted(date: .abbreviated, time: .omitted) + ", " + taskModel.taskDeadline.formatted(date: .omitted, time: .shortened))
                     .font(.callout)
                     .fontWeight(.semibold)
                     .padding(.top,8)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity,alignment: .leading)
             .overlay(alignment: .bottomTrailing) {
                 Button {
                     taskModel.showDatePicker.toggle()
@@ -85,38 +101,41 @@ struct AddNewTask: View {
                 Text("Task Title")
                     .font(.caption)
                     .foregroundColor(.gray)
-                TextField("",text: $taskModel.taskTitle)
+                
+                TextField("", text: $taskModel.taskTitle)
                     .frame(maxWidth: .infinity)
-                    .padding(.top,10)
+                    .padding(.top,8)
             }
             .padding(.top,10)
             
             Divider()
             
+            // MARK: Sample Task Types
             let taskTypes: [String] = ["Basic","Urgent","Important"]
             VStack(alignment: .leading, spacing: 12) {
-                Text("Text Type")
+                Text("Task Type")
                     .font(.caption)
                     .foregroundColor(.gray)
-                HStack(spacing:12) {
-                    ForEach(taskTypes,id: \.self) { type in
+                
+                HStack(spacing: 12){
+                    ForEach(taskTypes,id: \.self){type in
                         Text(type)
                             .font(.callout)
                             .padding(.vertical,8)
                             .frame(maxWidth: .infinity)
                             .foregroundColor(taskModel.taskType == type ? .white : .black)
                             .background{
-                                if taskModel.taskType == type {
+                                if taskModel.taskType == type{
                                     Capsule()
                                         .fill(.black)
                                         .matchedGeometryEffect(id: "TYPE", in: animation)
-                                } else {
+                                }else{
                                     Capsule()
-                                    .strokeBorder(.black)
+                                        .strokeBorder(.black)
                                 }
                             }
                             .contentShape(Capsule())
-                            .onTapGesture{
+                            .onTapGesture {
                                 withAnimation{taskModel.taskType = type}
                             }
                     }
@@ -127,8 +146,10 @@ struct AddNewTask: View {
             
             Divider()
             
+            // MARK: Save Button
             Button {
-                if taskModel.addTask(context: env.managedObjectContext) {
+                // MARK: If Success Closing View
+                if taskModel.addTask(context: env.managedObjectContext){
                     env.dismiss()
                 }
             } label: {
@@ -141,27 +162,26 @@ struct AddNewTask: View {
                     .background{
                         Capsule()
                             .fill(.black)
-                        
                     }
             }
-            .frame(maxHeight: .infinity, alignment: .bottom)
+            .frame(maxHeight: .infinity,alignment: .bottom)
             .padding(.bottom,10)
             .disabled(taskModel.taskTitle == "")
             .opacity(taskModel.taskTitle == "" ? 0.6 : 1)
-            
         }
-        .frame(maxHeight: .infinity, alignment: .top)
+        .frame(maxHeight: .infinity,alignment: .top)
         .padding()
-        .overlay{
-            ZStack {
+        .overlay {
+            ZStack{
                 if taskModel.showDatePicker{
                     Rectangle()
                         .fill(.ultraThinMaterial)
                         .ignoresSafeArea()
-                        .onTapGesture{
+                        .onTapGesture {
                             taskModel.showDatePicker = false
                         }
                     
+                    // MARK: Disabling Past Dates
                     DatePicker.init("", selection: $taskModel.taskDeadline,in: Date.now...Date.distantFuture)
                         .datePickerStyle(.graphical)
                         .labelsHidden()
@@ -181,3 +201,4 @@ struct AddNewTask_Previews: PreviewProvider {
             .environmentObject(TaskViewModel())
     }
 }
+
