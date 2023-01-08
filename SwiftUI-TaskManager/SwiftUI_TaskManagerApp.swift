@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct Task_ManagerApp: App {
+struct SwiftUI_TaskManagerApp: App {
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {
